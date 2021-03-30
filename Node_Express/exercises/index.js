@@ -1,5 +1,7 @@
 /**
- *Set up a server which return a hardcoded phone book
+ * Set up a server which return a hardcoded phone book
+ * Exercises source: https://fullstackopen.com/en/part3/node_js_and_express#exercises-3-1-3-6
+ *
  */
 const express = require("express");
 const app = express();

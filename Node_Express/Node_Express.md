@@ -77,3 +77,12 @@ After deploying, nodemon is not needed
 <br>
 
 To run nodemon: <code>nodemon index.js</code>
+
+# REST
+
+REST is an architectual style meant for building scalable web applications.
+
+> One convention is to create the unique address for resources by combining the name of the resource type with the resource's unique identifier.
+> <br>
+
+What does this mean?

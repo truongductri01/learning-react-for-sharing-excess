@@ -52,3 +52,13 @@ const app = http.createServer((request, response) => {
 ```
 
 <strong>What are others type of Content besides application/json?</strong>
+
+# Express
+
+a library that work with the built-in http module. has a more pleasing interface for developer and a better abstration for general use
+
+Advantages over http:
+
+1. Clear definition for each of the routes
+2. Simple declaration of the app
+3. Auto transform data into correct format

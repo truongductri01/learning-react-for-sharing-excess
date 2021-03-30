@@ -1,6 +1,6 @@
 // Simple Web server
-
-const http = require("http");
+const express = require("express");
+const app = express();
 
 // return a JSON file to the website
 let notes = [
@@ -24,11 +24,15 @@ let notes = [
   },
 ];
 
-const app = http.createServer((request, response) => {
-  response.writeHead(200, { "Content-Type": "application/json" });
-  response.end(JSON.stringify(notes));
+// Create different routes using express
+// The routes has to be in the correct form
+// unlike http, which return same reponse for every urls with similar formats (/ and /and)
+app.get("/", (request, response) => {
+  response.send("<h1>Hello World</h1>");
+});
+app.get("/api/notes", (request, response) => {
+  response.send(notes);
 });
 
 const PORT = 3001;
-app.listen(PORT);
-console.log("Server Running on port", PORT);
+app.listen(PORT, () => console.log("Server Running on port", PORT));

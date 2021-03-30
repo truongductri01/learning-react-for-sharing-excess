@@ -86,3 +86,14 @@ REST is an architectual style meant for building scalable web applications.
 > <br>
 
 What does this mean?
+
+# Postman
+
+a tool to test the CRUD operations more effectively
+
+# REST Client Visual Studio
+
+using REST Client to send and receive the request within the editor\
+create a file ending with .rest \
+paste in the request url \
+Then click Send Request

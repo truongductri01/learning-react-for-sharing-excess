@@ -6,6 +6,8 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json()); // this helps read the request body under json format
+
 let phoneBook = [
   { id: 1, name: "Arto Hellas", number: "040-123456" },
   { id: 2, name: "Ada Lovelace", number: "39-44-5323523" },
@@ -45,6 +47,30 @@ app.delete("/api/persons/:id/delete", (request, response) => {
     response.status(404).json({
       error: `${id} is not a valid person's id`,
     });
+  }
+});
+// Add new person
+const generateId = () => {
+  const maxId =
+    phoneBook.length > 0
+      ? Math.max(...phoneBook.map((person) => person.id))
+      : 0;
+  return maxId + 1;
+};
+app.post("/api/persons", (request, response) => {
+  const body = request.body;
+  if (!body.name || !body.number) {
+    response.status(400).json({
+      error: "no valid name or no valid number for the person",
+    });
+  } else {
+    const person = {
+      id: generateId(),
+      name: body.name,
+      number: body.number,
+    };
+    phoneBook.push(person);
+    response.json(person);
   }
 });
 

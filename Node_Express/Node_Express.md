@@ -102,5 +102,6 @@ Then click Send Request
 
 1. Delete: using postman to send the delete request to the server
 2. Create: sending a post request to the server. **Notice**: make sure the headers of the body is defined correctly based on the data type of the body's data (json, text, etc.)
+   > Notice: define the body of the object wanted to create to avoid unnecessary information
 
 **funy note**: .push() will return the array's new length while .concat() will return the new array version

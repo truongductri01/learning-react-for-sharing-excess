@@ -60,14 +60,30 @@ app.delete("/api/notes/:id/delete", (request, response) => {
   response.status(204).end();
 });
 
+// -----------------------------------------------------------------------------------------
 // Create new note
-app.post("/api/notes", (request, response) => {
+const generateId = () => {
   const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0;
-  const note = request.body; // access and retrieve data from request with the help of json-parser
-  note.id = maxId + 1;
-  console.log(note);
+  return maxId + 1;
+};
+app.post("/api/notes", (request, response) => {
+  const body = request.body; // access and retrieve data from request with the help of json-parser
 
-  //   notes = notes.concat(note);
+  // Validate the body's content
+  if (!body.content) {
+    return response.status(404).json({
+      error: "content missing",
+    });
+  }
+
+  // Give the note a default body definition (avoid other information passing in)
+  const note = {
+    content: body.content,
+    important: body.important || false,
+    date: new Date(),
+    id: generateId(),
+  };
+
   notes.push(note);
   response.json(note);
 });

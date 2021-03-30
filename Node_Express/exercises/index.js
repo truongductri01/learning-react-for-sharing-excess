@@ -6,7 +6,7 @@
 const express = require("express");
 const app = express();
 
-const phoneBook = [
+let phoneBook = [
   { id: 1, name: "Arto Hellas", number: "040-123456" },
   { id: 2, name: "Ada Lovelace", number: "39-44-5323523" },
   { id: 3, name: "DAn Abramov", number: "12-43-234345" },
@@ -33,6 +33,18 @@ app.get("/api/persons/:id", (request, response) => {
     response.json(person);
   } else {
     response.status(404).end();
+  }
+});
+app.delete("/api/persons/:id/delete", (request, response) => {
+  const id = request.params.id;
+  const person = phoneBook.find((person) => person.id == id);
+  if (person) {
+    phoneBook = phoneBook.filter((person) => person.id != id);
+    response.send(`Successfully delete the person with the id of ${id}`);
+  } else {
+    response.status(404).json({
+      error: `${id} is not a valid person's id`,
+    });
   }
 });
 

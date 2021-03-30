@@ -4,9 +4,17 @@
  *
  */
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
 app.use(express.json()); // this helps read the request body under json format
+morgan.token("body", (req, res) => {
+  const body = req.body;
+  return body.name && body.number
+    ? `{name: "${body.name}", number: "${body.number}"}`
+    : "{}";
+});
+app.use(morgan(":method :url :status :response-time ms :body"));
 
 let phoneBook = [
   { id: 1, name: "Arto Hellas", number: "040-123456" },
@@ -16,7 +24,7 @@ let phoneBook = [
 ];
 
 app.get("/api/persons", (request, response) => {
-  response.json(phoneBook);
+  response.status(200).json(phoneBook);
 });
 app.get("/info", (request, response) => {
   const amountOfPeople = phoneBook.length;

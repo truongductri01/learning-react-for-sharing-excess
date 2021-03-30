@@ -3,7 +3,16 @@ const express = require("express");
 const app = express();
 
 // utilize expree json-parser for the purpose of creating note later
-app.use(express.json()); // middleware?
+const middleware = (request, response, next) => {
+  console.log("method:", request.body);
+  console.log("path:  ", request.path);
+  console.log("Body:  ", request.body);
+  console.log("---");
+  next(); // yeilds the control to the next middle ware
+};
+
+app.use(express.json());
+app.use(middleware); // should be after the body has been jsonify
 
 // return a JSON file to the website
 let notes = [

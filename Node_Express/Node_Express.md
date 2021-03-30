@@ -105,3 +105,9 @@ Then click Send Request
    > Notice: define the body of the object wanted to create to avoid unnecessary information
 
 **funy note**: .push() will return the array's new length while .concat() will return the new array version
+
+# MiddleWare
+
+functions used to handle request and response objects
+has 3 parameters: request, response, and next
+next is to yeild the control to the next middleware

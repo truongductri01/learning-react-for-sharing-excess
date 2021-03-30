@@ -48,5 +48,14 @@ app.get("/api/notes/:id", (request, response) => {
   }
 });
 
+// Delete resources through delete api operation
+// Should be tested using application, such as POSTMAN
+app.delete("/api/notes/:id/delete", (request, response) => {
+  const id = Number(request.params.id);
+  // Simply just remove the note out of the list
+  notes = notes.filter((note) => note.id !== id);
+  response.status(204).end();
+});
+
 const PORT = 3001;
 app.listen(PORT, () => console.log("Server Running on port", PORT));

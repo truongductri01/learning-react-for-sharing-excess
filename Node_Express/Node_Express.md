@@ -71,4 +71,9 @@ a library which watches the changes in node js and automatically reload the serv
 npm install --save-dev nodemon
 ```
 
-"--save-dev" means we only need nodemon in the development stage. After deploying, nodemon is not needed
+"--save-dev" means we only need nodemon in the development stage.
+<br>
+After deploying, nodemon is not needed
+<br>
+
+To run nodemon: <code>nodemon index.js</code>

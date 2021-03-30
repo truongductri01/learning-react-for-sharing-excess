@@ -62,3 +62,13 @@ Advantages over http:
 1. Clear definition for each of the routes
 2. Simple declaration of the app
 3. Auto transform data into correct format
+
+# Nodemon
+
+a library which watches the changes in node js and automatically reload the server
+
+```
+npm install --save-dev nodemon
+```
+
+"--save-dev" means we only need nodemon in the development stage. After deploying, nodemon is not needed

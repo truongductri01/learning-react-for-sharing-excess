@@ -2,6 +2,9 @@
 const express = require("express");
 const app = express();
 
+// utilize expree json-parser for the purpose of creating note later
+app.use(express.json()); // middleware?
+
 // return a JSON file to the website
 let notes = [
   {
@@ -55,6 +58,18 @@ app.delete("/api/notes/:id/delete", (request, response) => {
   // Simply just remove the note out of the list
   notes = notes.filter((note) => note.id !== id);
   response.status(204).end();
+});
+
+// Create new note
+app.post("/api/notes", (request, response) => {
+  const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0;
+  const note = request.body; // access and retrieve data from request with the help of json-parser
+  note.id = maxId + 1;
+  console.log(note);
+
+  //   notes = notes.concat(note);
+  notes.push(note);
+  response.json(note);
 });
 
 const PORT = 3001;

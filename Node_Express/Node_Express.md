@@ -97,3 +97,10 @@ using REST Client to send and receive the request within the editor\
 create a file ending with .rest \
 paste in the request url \
 Then click Send Request
+
+# CRUD operations
+
+1. Delete: using postman to send the delete request to the server
+2. Create: sending a post request to the server. **Notice**: make sure the headers of the body is defined correctly based on the data type of the body's data (json, text, etc.)
+
+**funy note**: .push() will return the array's new length while .concat() will return the new array version

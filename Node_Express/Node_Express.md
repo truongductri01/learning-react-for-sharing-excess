@@ -111,3 +111,7 @@ Then click Send Request
 functions used to handle request and response objects
 has 3 parameters: request, response, and next
 next is to yeild the control to the next middleware
+
+# Same origin policy and CORS
+
+this can happend if the api is requested from a different port. happens if you run frontend on local host 3000 and fetch an api from localhost 3001

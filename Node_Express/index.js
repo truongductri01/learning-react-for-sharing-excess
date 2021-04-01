@@ -1,6 +1,7 @@
 // Simple Web server
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 // utilize expree json-parser for the purpose of creating note later
 const middleware = (request, response, next) => {
@@ -11,6 +12,7 @@ const middleware = (request, response, next) => {
   next(); // yeilds the control to the next middle ware
 };
 
+app.use(cors());
 app.use(express.json());
 app.use(middleware); // should be after the body has been jsonify
 
@@ -95,6 +97,29 @@ app.post("/api/notes", (request, response) => {
 
   notes.push(note);
   response.json(note);
+});
+
+app.put("/api/notes/:id", (request, response) => {
+  const body = request.body;
+  console.log("Body >>>", body);
+  if (!"important" in body) {
+    response.status(404).json({ error: "No important in the body" });
+  } else {
+    const id = request.params.id;
+    notes = notes.map((note) => {
+      if (note.id != id) {
+        return note;
+      } else {
+        return { ...note, important: body.important };
+      }
+    });
+    const note = notes.find((note) => note.id == id);
+    if (note) {
+      return response.send(note);
+    } else {
+      return response.status(404).json({ error: "note not exist" });
+    }
+  }
 });
 
 const PORT = 3001;
